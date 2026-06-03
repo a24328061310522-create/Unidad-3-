@@ -1,223 +1,105 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en">
 <head>
-
-  <meta charset="UTF-8">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Series de Asesinos JOHANA MICHEL SALAZAR MARTINEZ</title>
-
-  <link rel="stylesheet" href="styles.css">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.cdnfonts.com/css/black-hoops" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/neon-club-music" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <title>Primera Pagina deJOHANA MICHEL SALAZAR MARTINEZ</title>
 </head>
-
 <body>
+    <div>
+        <style>
+            :root{
+                --color-de-fondo: #DF087E;
+                --color-de-letras: #6F3E5E;
+                --color-de-barra: #A31E21;
+                --color-extra: #0A0A0A;
+            }
 
-  <div class="container">
+            body{
+                background-color: #0dff39;
+                background-color: #76e4a8;
+            }
 
-    <div class="titulo">
+            h1{
+                font-family: 'NEON CLUB MUSIC', sans-serif;
+                color: var(--color-extra);
+                text-align: center;
+            }
 
-      <h1> SERIES DE ASESINOS </h1>
+            table{
+                width: 80%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
 
-      <p>
-        Explora series criminales, asesinos seriales y thrillers psicológicos
-      </p>
-
+            th, td {
+                padding: 10px;
+                text-align: left;
+                border-bottom: 1px solid var(--color-de-letras);
+            }
+        </style>
     </div>
-
-    <div class="buscador">
-
-      <input
-        type="text"
-        id="busqueda"
-        placeholder="Busca una serie... Ejemplo: Dexter"
-      >
-
-      <button onclick="buscarSeries()">
-        Buscar
-      </button>
-
+    <nav class="navbar navbar-light" style="background-color: #8fc88a;">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" style="color: black; font-family: 'Black Hoops', sans-serif;">Pr 1</a>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="nav navbar-nav">
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">
+        Practica 1
+    </a>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="tienda/mostrar.html">mostrar.html</a><br>
     </div>
+</li>
 
-    <div id="resultados"></div>
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">
+        Practica 2
+    </a>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="relaciones01.html">relaciones01.html</a><br>
+        <a class="dropdown-item" href="relaciones02.html">relaciones02.html</a><br>
+        <a class="dropdown-item" href="capturadatosrelacionados.html">capturadatosrelacionados.html</a><br>
+        <a class="dropdown-item" href="insertar_datos.html">insertar_datos.html</a><br>
+        <a class="dropdown-item" href="marvel.html">marvel.html</a><br>
+        <a class="dropdown-item" href="tarjetas.html">tarjetas.html</a><br>
+        <a class="dropdown-item" href="proceso.html">proceso.html</a><br>
+       <a class="dropdown-item" href="comotuquieras.html">comotuquieras.html</a><br>
+    </div>
+</li>
 
-  </div>
-
-  <script>
-
-    async function buscarSeries() {
-
-      const texto = document.getElementById('busqueda').value;
-
-      const contenedor = document.getElementById('resultados');
-
-      if(texto === '') {
-
-        contenedor.innerHTML = `
-          <p class="mensaje">
-            🔍 Escribe el nombre de una serie
-          </p>
-        `;
-
-        return;
-      }
-
-      contenedor.innerHTML = `
-        <p class="mensaje">
-          ⏳ Buscando series criminales...
-        </p>
-      `;
-
-      const url = `https://api.tvmaze.com/search/shows?q=${texto}`;
-
-      try {
-
-        const respuesta = await fetch(url);
-
-        const data = await respuesta.json();
-
-        contenedor.innerHTML = '';
-
-        if(data.length === 0){
-
-          contenedor.innerHTML = `
-            <p class="mensaje">
-              ❌ No se encontraron resultados
-            </p>
-          `;
-
-          return;
-        }
-
-        data.forEach(item => {
-
-          const serie = item.show;
-
-          const resumenLimpio = serie.summary
-            ? serie.summary
-                .replace(/<[^>]*>/g, '')
-                .replace(/Schedule/g, 'Horario')
-                .replace(/Status/g, 'Estado')
-                .replace(/Language/g, 'Idioma')
-                .replace(/Genres/g, 'Géneros')
-                .replace(/Drama/g, 'Drama')
-                .replace(/Crime/g, 'Crimen')
-                .replace(/Thriller/g, 'Suspenso')
-                .replace(/Mystery/g, 'Misterio')
-                .replace(/Horror/g, 'Terror')
-                .replace(/Action/g, 'Acción')
-                .replace(/Comedy/g, 'Comedia')
-                .replace(/English/g, 'Inglés')
-                .slice(0, 250)
-            : 'No hay descripción disponible.';
-
-          const generosTraducidos = serie.genres
-            .map(genero => {
-
-              const traducciones = {
-
-                Drama: 'Drama',
-                Crime: 'Crimen',
-                Thriller: 'Suspenso',
-                Mystery: 'Misterio',
-                Horror: 'Terror',
-                Action: 'Acción',
-                Comedy: 'Comedia',
-                Romance: 'Romance',
-                Adventure: 'Aventura',
-                Fantasy: 'Fantasía',
-                Anime: 'Anime'
-
-              };
-
-              return traducciones[genero] || genero;
-
-            })
-            .join(' 🔪 ');
-
-          contenedor.innerHTML += `
-
-            <div class="card">
-
-              <div class="imagen-container">
-
-                <img
-                  src="${serie.image?.original || serie.image?.medium || 'https://via.placeholder.com/300x400'}"
-                  alt="${serie.name}"
-                >
-
-                <div class="overlay"></div>
-
-                <div class="rating">
-                  ⭐ ${serie.rating.average || 'N/A'}
-                </div>
-
-              </div>
-
-              <div class="contenido">
-
-                <h2>${serie.name}</h2>
-
-                <p class="generos">
-                  ${generosTraducidos}
-                </p>
-
-                <div class="info-extra">
-
-                  <span>
-                    📺 ${serie.status || 'Desconocido'}
-                  </span>
-
-                  <span>
-                    🌎 ${serie.language || 'No disponible'}
-                  </span>
-
-                </div>
-
-                <p class="descripcion">
-                  ${resumenLimpio}...
-                </p>
-
-                <a
-                  href="${serie.officialSite || serie.url}"
-                  target="_blank"
-                  class="boton-ver"
-                >
-                  VER MÁS
-                </a>
-
-              </div>
-
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">
+        Practica 3
+    </a>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="../POKEMONJOHANA/index.html">index.html</a><br>
+        <a class="dropdown-item" href="../POKEMONJOHANA/pokedex.html">pokedex.html</a><br>
+        <a class="dropdown-item" href="../POKEMONJOHANA/peliculas.html">peliculas.html</a><br>
+        <a class="dropdown-item" href="../POKEMONJOHANA/prueba.html">prueba.html</a><br>
+    </div>
+</li>
+        
+                    </li>
+                </ul>
             </div>
-
-          `;
-
-        });
-
-      } catch(error){
-
-        contenedor.innerHTML = `
-          <p class="mensaje">
-            ⚠️ Error al conectar con la API
-          </p>
-        `;
-
-        console.log(error);
-
-      }
-
-    }
-
-  </script>
-
+        </div>
+    </nav>
+    <div class="jumbotron">
+        <h1 class="display-4">hola chicos</h1>
+        <p class="lead">PAGINA PRINCIPAL </p>
+        <hr class="my-4">
+        <p>ola olas </p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="#" role="button"> CLICKSITO!</a>
+        </p>
+    </div>
 </body>
-
 </html>
