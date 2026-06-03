@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Tarjetas Marvel</title>
+
+<style>
+
+body{
+    background:#76e4a8;
+    font-family:Arial;
+}
+
+.cards-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:20px;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 4px 10px rgba(0,0,0,.2);
+}
+
+.card-header{
+    background:#A31E21;
+    color:white;
+    padding:15px;
+    text-align:center;
+    font-size:22px;
+}
+
+.card-body{
+    padding:15px;
+}
+
+</style>
+
+</head>
+<body>
+
+<h1 style="text-align:center;">ARCHIVO MARVEL</h1>
+
+<div id="contenedor" class="cards-grid"></div>
+
+<script>
+
+const heroes = [
+
+{
+    "nombre":"Spider-Man",
+    "nombrereal":"Peter Parker",
+    "poderes":"Sentido Arácnido",
+    "altura":"1.78m",
+    "bio":"Héroe arácnido de Nueva York"
+},
+
+{
+    "nombre":"Iron Man",
+    "nombrereal":"Tony Stark",
+    "poderes":"Armadura Tecnológica",
+    "altura":"1.85m",
+    "bio":"Genio multimillonario"
+},
+
+{
+    "nombre":"Thor",
+    "nombrereal":"Thor Odinson",
+    "poderes":"Control del trueno",
+    "altura":"1.98m",
+    "bio":"Dios de Asgard"
+}
+
+];
+
+const contenedor = document.getElementById("contenedor");
+
+heroes.forEach(hero=>{
+
+contenedor.innerHTML += `
+
+<div class="card">
+
+<div class="card-header">
+${hero.nombre}
+</div>
+
+<div class="card-body">
+
+<p><b>Nombre Real:</b> ${hero.nombrereal}</p>
+
+<p><b>Poderes:</b> ${hero.poderes}</p>
+
+<p><b>Altura:</b> ${hero.altura}</p>
+
+<p><b>Biografía:</b> ${hero.bio}</p>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+</script>
+
+</body>
+</html>

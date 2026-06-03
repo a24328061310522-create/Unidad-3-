@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+<title>Registro Gamer</title>
+
+<style>
+body{
+    background:#111827;
+    color:white;
+}
+
+.navbar{
+    background:#4c1d95;
+}
+
+h1,h2{
+    text-align:center;
+    color:#22d3ee;
+}
+
+.form-container{
+    margin-top:30px;
+}
+
+input, select{
+    width:100%;
+    margin-bottom:10px;
+    padding:10px;
+    background:#1f2937;
+    border:2px solid #22d3ee;
+    color:white;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    background:#22d3ee;
+    border:none;
+    color:black;
+    font-weight:bold;
+}
+
+#mensaje{
+    margin-top:15px;
+    color:#4ade80;
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="container">
+        <a class="navbar-brand" href="#">Centro Gamer</a>
+    </div>
+</nav>
+
+<div class="container form-container">
+
+    <h2>REGISTRO DE JUGADORES 🎮</h2>
+
+    <form id="formGamer">
+
+        <input type="text" id="nickname" placeholder="Nickname" required>
+
+        <input type="number" id="edad" placeholder="Edad" required>
+
+        <input type="text" id="juego" placeholder="Juego favorito" required>
+
+        <select id="rango">
+            <option value="">Selecciona tu rango</option>
+            <option>Bronce</option>
+            <option>Plata</option>
+            <option>Oro</option>
+            <option>Diamante</option>
+        </select>
+
+        <input type="text" id="plataforma" placeholder="Plataforma" required>
+
+        <button type="submit">Guardar Registro</button>
+
+    </form>
+
+    <div id="mensaje"></div>
+
+</div>
+
+<script>
+
+// Cargar datos guardados
+let gamers = JSON.parse(localStorage.getItem("gamers")) || [];
+
+document.getElementById("formGamer").addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const gamer = {
+        nickname: document.getElementById("nickname").value,
+        edad: document.getElementById("edad").value,
+        juego: document.getElementById("juego").value,
+        rango: document.getElementById("rango").value,
+        plataforma: document.getElementById("plataforma").value
+    };
+
+    gamers.push(gamer);
+
+    localStorage.setItem("gamers", JSON.stringify(gamers));
+
+    document.getElementById("mensaje").innerHTML =
+    "✅ Jugador registrado correctamente";
+
+    document.getElementById("formGamer").reset();
+
+    console.log(gamers);
+
+});
+
+</script>
+
+</body>
+</html>

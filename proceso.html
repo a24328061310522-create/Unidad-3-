@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Proceso Marvel</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+<style>
+
+body{
+    background:#76e4a8;
+    font-family:Arial,sans-serif;
+}
+
+.container{
+    max-width:700px;
+    margin:50px auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.btn-marvel{
+    background:#A31E21;
+    color:white;
+    padding:10px 20px;
+    text-decoration:none;
+    border-radius:10px;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Héroe Registrado</h1>
+
+    <p>El héroe fue guardado correctamente.</p>
+
+    <br>
+
+    <a href="marvel.html" class="btn-marvel">
+        Registrar Otro Héroe
+    </a>
+
+    <a href="tarjetas.html" class="btn-marvel">
+        Ver Tarjetas
+    </a>
+
+</div>
+
+<script>
+
+const heroeMarvel = {
+    "nombre":"Iron Man",
+    "nombreReal":"Tony Stark",
+    "poderes":"Armadura tecnológica",
+    "altura":"1.85 m",
+    "bio":"Genio, millonario y vengador",
+    "imagen":"ironman.jpg"
+};
+
+console.log(heroeMarvel);
+
+</script>
+
+</body>
+</html>

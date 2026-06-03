@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Captura de Datos Marvel</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+<style>
+body{
+    background-color:#aca2bc;
+    font-family:Arial, sans-serif;
+}
+
+.container{
+    max-width:800px;
+    margin:30px auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+label{
+    font-weight:bold;
+}
+
+input, textarea{
+    margin-bottom:15px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Agregar Personaje de Marvel</h1>
+
+    <form>
+
+        <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" class="form-control" placeholder="Nombre">
+        </div>
+
+        <div class="form-group">
+            <label>Alias</label>
+            <input type="text" class="form-control" placeholder="Alias">
+        </div>
+
+        <div class="form-group">
+            <label>Fecha de Creación</label>
+            <input type="date" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label>Descripción</label>
+            <textarea class="form-control" rows="4"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Comics</label>
+            <input type="text" class="form-control"
+            placeholder="Ejemplo: Spider-Man, Iron Man">
+        </div>
+
+        <div class="form-group">
+            <label>Superpoderes</label>
+            <input type="text" class="form-control"
+            placeholder="Ejemplo: Fuerza, Velocidad">
+        </div>
+
+        <button type="button" class="btn btn-primary btn-block">
+            Guardar Personaje
+        </button>
+
+    </form>
+
+</div>
+
+<script>
+
+const personajeMarvel = {
+    "nombre": "Spider-Man",
+    "alias": "Peter Parker",
+    "fechaCreacion": "1962-08-01",
+    "descripcion": "Héroe con poderes arácnidos",
+    "comics": [
+        "Amazing Fantasy #15",
+        "The Amazing Spider-Man"
+    ],
+    "superpoderes": [
+        "Trepar muros",
+        "Sentido arácnido",
+        "Agilidad"
+    ]
+};
+
+console.log(personajeMarvel);
+
+</script>
+
+</body>
+</html>

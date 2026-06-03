@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Series de Asesinos</title>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="titulo">
+
+      <h1> SERIES DE ASESINOS </h1>
+
+      <p>
+        Explora series criminales, asesinos seriales y thrillers psicológicos
+      </p>
+
+    </div>
+
+    <div class="buscador">
+
+      <input
+        type="text"
+        id="busqueda"
+        placeholder="Busca una serie... Ejemplo: Dexter"
+      >
+
+      <button onclick="buscarSeries()">
+        Buscar
+      </button>
+
+    </div>
+
+    <div id="resultados"></div>
+
+  </div>
+
+  <script>
+
+    async function buscarSeries() {
+
+      const texto = document.getElementById('busqueda').value;
+
+      const contenedor = document.getElementById('resultados');
+
+      if(texto === '') {
+
+        contenedor.innerHTML = `
+          <p class="mensaje">
+            🔍 Escribe el nombre de una serie
+          </p>
+        `;
+
+        return;
+      }
+
+      contenedor.innerHTML = `
+        <p class="mensaje">
+          ⏳ Buscando series criminales...
+        </p>
+      `;
+
+      const url = `https://api.tvmaze.com/search/shows?q=${texto}`;
+
+      try {
+
+        const respuesta = await fetch(url);
+
+        const data = await respuesta.json();
+
+        contenedor.innerHTML = '';
+
+        if(data.length === 0){
+
+          contenedor.innerHTML = `
+            <p class="mensaje">
+              ❌ No se encontraron resultados
+            </p>
+          `;
+
+          return;
+        }
+
+        data.forEach(item => {
+
+          const serie = item.show;
+
+          const resumenLimpio = serie.summary
+            ? serie.summary
+                .replace(/<[^>]*>/g, '')
+                .replace(/Schedule/g, 'Horario')
+                .replace(/Status/g, 'Estado')
+                .replace(/Language/g, 'Idioma')
+                .replace(/Genres/g, 'Géneros')
+                .replace(/Drama/g, 'Drama')
+                .replace(/Crime/g, 'Crimen')
+                .replace(/Thriller/g, 'Suspenso')
+                .replace(/Mystery/g, 'Misterio')
+                .replace(/Horror/g, 'Terror')
+                .replace(/Action/g, 'Acción')
+                .replace(/Comedy/g, 'Comedia')
+                .replace(/English/g, 'Inglés')
+                .slice(0, 250)
+            : 'No hay descripción disponible.';
+
+          const generosTraducidos = serie.genres
+            .map(genero => {
+
+              const traducciones = {
+
+                Drama: 'Drama',
+                Crime: 'Crimen',
+                Thriller: 'Suspenso',
+                Mystery: 'Misterio',
+                Horror: 'Terror',
+                Action: 'Acción',
+                Comedy: 'Comedia',
+                Romance: 'Romance',
+                Adventure: 'Aventura',
+                Fantasy: 'Fantasía',
+                Anime: 'Anime'
+
+              };
+
+              return traducciones[genero] || genero;
+
+            })
+            .join(' 🔪 ');
+
+          contenedor.innerHTML += `
+
+            <div class="card">
+
+              <div class="imagen-container">
+
+                <img
+                  src="${serie.image?.original || serie.image?.medium || 'https://via.placeholder.com/300x400'}"
+                  alt="${serie.name}"
+                >
+
+                <div class="overlay"></div>
+
+                <div class="rating">
+                  ⭐ ${serie.rating.average || 'N/A'}
+                </div>
+
+              </div>
+
+              <div class="contenido">
+
+                <h2>${serie.name}</h2>
+
+                <p class="generos">
+                  ${generosTraducidos}
+                </p>
+
+                <div class="info-extra">
+
+                  <span>
+                    📺 ${serie.status || 'Desconocido'}
+                  </span>
+
+                  <span>
+                    🌎 ${serie.language || 'No disponible'}
+                  </span>
+
+                </div>
+
+                <p class="descripcion">
+                  ${resumenLimpio}...
+                </p>
+
+                <a
+                  href="${serie.officialSite || serie.url}"
+                  target="_blank"
+                  class="boton-ver"
+                >
+                  VER MÁS
+                </a>
+
+              </div>
+
+            </div>
+
+          `;
+
+        });
+
+      } catch(error){
+
+        contenedor.innerHTML = `
+          <p class="mensaje">
+            ⚠️ Error al conectar con la API
+          </p>
+        `;
+
+        console.log(error);
+
+      }
+
+    }
+
+  </script>
+
+</body>
+
+</html>

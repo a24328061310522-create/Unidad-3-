@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Mostrar Héroes Marvel</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+<style>
+body{
+    background:#76e4a8;
+    padding:20px;
+}
+table{
+    background:white;
+}
+</style>
+
+</head>
+<body>
+
+<h1 class="text-center">Héroes Marvel</h1>
+
+<table class="table table-bordered">
+
+<thead>
+<tr>
+    <th>Nombre</th>
+    <th>Nombre Real</th>
+    <th>Poderes</th>
+    <th>Altura</th>
+</tr>
+</thead>
+
+<tbody id="tablaHeroes"></tbody>
+
+</table>
+
+<script>
+
+const heroes = [
+
+{
+    "nombre":"Spider-Man",
+    "nombrereal":"Peter Parker",
+    "poderes":"Sentido Arácnido",
+    "altura":"1.78m"
+},
+
+{
+    "nombre":"Iron Man",
+    "nombrereal":"Tony Stark",
+    "poderes":"Armadura Tecnológica",
+    "altura":"1.85m"
+},
+
+{
+    "nombre":"Thor",
+    "nombrereal":"Thor Odinson",
+    "poderes":"Dios del Trueno",
+    "altura":"1.98m"
+}
+
+];
+
+const tabla = document.getElementById("tablaHeroes");
+
+heroes.forEach(hero=>{
+
+tabla.innerHTML += `
+<tr>
+<td>${hero.nombre}</td>
+<td>${hero.nombrereal}</td>
+<td>${hero.poderes}</td>
+<td>${hero.altura}</td>
+</tr>
+`;
+
+});
+
+</script>
+
+</body>
+</html>

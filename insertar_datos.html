@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Insertar Datos Marvel</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+<style>
+body{
+    background:#aca2bc;
+    font-family:Arial,sans-serif;
+}
+
+.container{
+    max-width:800px;
+    margin:50px auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+}
+
+h1{
+    margin-bottom:20px;
+}
+
+.btn-marvel{
+    background:#A31E21;
+    color:white;
+    padding:10px 20px;
+    text-decoration:none;
+    border-radius:10px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Personaje Guardado</h1>
+
+    <p>Los datos del personaje fueron procesados correctamente.</p>
+
+    <br>
+
+    <a href="capturadatosrelacionados.html" class="btn-marvel">
+        Registrar Otro Personaje
+    </a>
+
+    <a href="relaciones01.html" class="btn-marvel">
+        Ver Personajes
+    </a>
+
+</div>
+
+<script>
+
+const personajeMarvel = {
+    "nombre":"Spider-Man",
+    "alias":"Peter Parker",
+    "fechaCreacion":"1962-08-01",
+    "descripcion":"Héroe con poderes arácnidos",
+    "comics":[
+        "Amazing Fantasy #15",
+        "The Amazing Spider-Man"
+    ],
+    "superpoderes":[
+        "Trepar muros",
+        "Sentido arácnido",
+        "Agilidad"
+    ]
+};
+
+console.log(personajeMarvel);
+
+</script>
+
+</body>
+</html>
